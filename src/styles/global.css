@@ -83,11 +83,22 @@ body {
     }
 }
 
-/**@layer base {
-    /** {
-        @apply border-border;
-        }
-    body {
-        @apply bg-background text-foreground;
-    }
-}*/
+body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+}
+
+@utility clip-circle {
+    clip-path: circle(110px at 50% 50%);
+}
+
+@utility bg-bg {
+    background-color: hsl(var(--background));
+}
+
+@font-face {
+    font-family: "Arial Black";
+    font-style: normal;
+    font-weight: normal;
+    src: url("arial_black.woff2") format("woff2");
+}
