@@ -1,39 +1,40 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import ProjectCard from '../../components/ProjectCard.astro';
+import Layout from "../../layouts/Layout.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
 ---
 
-<Layout title="Projects - DOTY'S SITE">
-  <div class="flex flex-col items-center min-h-screen py-16 px-4">
-    <div class="w-full max-w-7xl">
-      <div class="text-center mb-24">
-        <h1 class="text-4xl md:text-6xl font-bold mb-4">PROJECTS</h1>
-        <p class="text-xl md:text-2xl italic">Everything that I've worked on so far</p>
-      </div>
+<Layout title="Projects - DOTY'S SITE" menuHidden={false}>
+    <div class="flex flex-col items-center min-h-screen py-16 px-4">
+        <div class="w-full max-w-7xl">
+            <div class="text-center mb-24">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">PROJECTS</h1>
+                <p class="text-xl md:text-2xl italic">
+                    Everything that I've worked on so far
+                </p>
+            </div>
 
-      <div class="space-y-8">
-        <ProjectCard
-          title="Space"
-          dateRange="From 04.01.2024 until 04.01.2025"
-          description="This project was about to create a working satelite prototype to the Cansat Hungary 2024 competition."
-          link="/projects/space"
-        />
+            <div class="space-y-8">
+                <ProjectCard
+                    title="Space"
+                    dateRange="From 04.01.2024 until 04.01.2025"
+                    description="This project was about to create a working satelite prototype to the Cansat Hungary 2024 competition."
+                    link="/projects/space"
+                />
 
-        <ProjectCard
-          title="Photographic Lamp"
-          dateRange="From 04.01.2025"
-          description="It's me again suffering from extras that I wanted to add to a simple lamp."
-          link="/projects/photographic-lamp"
-        />
+                <ProjectCard
+                    title="Photographic Lamp"
+                    dateRange="From 04.01.2025"
+                    description="It's me again suffering from extras that I wanted to add to a simple lamp."
+                    link="/projects/photographic-lamp"
+                />
 
-        <ProjectCard
-          title="Photographic Lamp"
-          dateRange="From 04.01.2025"
-          description="It's me again suffering from extras that I wanted to add to a simple lamp."
-          link="/projects/photographic-lamp-2"
-        />
-      </div>
+                <ProjectCard
+                    title="Photographic Lamp"
+                    dateRange="From 04.01.2025"
+                    description="It's me again suffering from extras that I wanted to add to a simple lamp."
+                    link="/projects/photographic-lamp-2"
+                />
+            </div>
+        </div>
     </div>
-  </div>
 </Layout>
-

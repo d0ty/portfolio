@@ -1,27 +1,26 @@
 ---
 interface Props {
-  title: string;
-  link: string;
-  imageUrl?: string;
+    title: string;
+    link: string;
+    imageUrl?: string;
 }
 
-const { title, link, imageUrl = "/placeholder.svg?width=480&height=360" } = Astro.props;
+const { title, link, imageUrl } = Astro.props;
 ---
 
 <a href={link} class="block">
-  <div class="bg-[#D9D9D9] rounded-xl overflow-hidden">
-    <div class="w-full h-[360px] bg-[#008000]">
-      <img 
-        src={imageUrl || "/placeholder.svg"} 
-        alt="" 
-        class="w-full h-full object-cover"
-        width="480"
-        height="360"
-      />
+    <div class="bg-[#D9D9D9] rounded-xl overflow-hidden clip-top-round">
+        <div class="w-full h-[360px]">
+            <img
+                src={imageUrl || "/placeholder.png"}
+                alt=""
+                class="w-full h-full object-cover"
+                width="480"
+                height="360"
+            />
+        </div>
+        <div class="p-4">
+            <h3 class="text-black font-bold text-xl text-center">{title}</h3>
+        </div>
     </div>
-    <div class="p-4">
-      <h3 class="text-black font-bold text-xl text-center">{title}</h3>
-    </div>
-  </div>
 </a>
-

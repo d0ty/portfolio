@@ -3,9 +3,10 @@ import Scaffolding from "./Scaffolding.astro";
 
 interface Props {
     title: string;
+    menuHidden: boolean;
 }
 
-const { title } = Astro.props;
+const { title, menuHidden = false } = Astro.props;
 ---
 
 <Scaffolding title={title}>
@@ -13,12 +14,12 @@ const { title } = Astro.props;
         <!-- Navigation Bar -->
         <nav
             id="navbar"
-            class="flex items-baseline justify-between px-6 pt-4 border-b-2 border-white font-[Arial_Black] fixed w-full bg-bg z-100 duration-250 transition-opacity"
+            class={`flex items-baseline justify-between px-6 pt-4 border-b-2 border-white font-[Arial_Black] fixed w-full bg-bg z-100 duration-250 transition-opacity ${menuHidden ? "opacity-0" : "opacity-100"}`}
         >
             <div class="flex items-center gap-4">
                 <!-- Decorative Circle -->
                 <div class="w-16 h-16 rounded-full clip-circle">
-                    <img src="favicon.png" />
+                    <img src="/favicon.png" />
                 </div>
                 <a href="/" class="text-3xl tracking-wider self-end">
                     DOTY'S SITE
@@ -48,7 +49,7 @@ const { title } = Astro.props;
                         class="flex items-center gap-2 hover:text-gray-300 transition-colors"
                     >
                         <img
-                            src="english.png"
+                            src="/english.png"
                             alt="UK Flag"
                             class="object-contain h-6"
                         />
@@ -78,7 +79,7 @@ const { title } = Astro.props;
                         >
                             English
                             <img
-                                src="english.png"
+                                src="/english.png"
                                 alt="UK Flag"
                                 class="object-contain h-4"
                             />
@@ -89,7 +90,7 @@ const { title } = Astro.props;
                         >
                             Magyar
                             <img
-                                src="hungary.png"
+                                src="/hungary.png"
                                 alt="Hungary Flag"
                                 class="object-contain h-4"
                             />
@@ -100,7 +101,7 @@ const { title } = Astro.props;
         </nav>
 
         <!-- Main Content Area -->
-        <main class="flex-1">
+        <main class:list={menuHidden ? ["flex-1"] : ["flex-1", "pt-20"]}>
             <slot />
         </main>
 

@@ -96,9 +96,31 @@ body {
     background-color: hsl(var(--background));
 }
 
+@utility clip-rounding {
+    clip-path: inset(0 0 0 round 20px);
+}
+
+@utility clip-top-round {
+    clip-path: inset(0 round 20px 20px 0 0);
+}
+
 @font-face {
     font-family: "Arial Black";
     font-style: normal;
     font-weight: normal;
-    src: url("arial_black.woff2") format("woff2");
+    src: url("/arial_black.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Lato";
+    font-style: italic;
+    font-weight: light;
+    src: url("/lato-light-italic.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Lato";
+    font-style: normal;
+    font-weight: bold;
+    src: url("/lato-bold.woff2") format("woff2");
 }

@@ -1,48 +1,48 @@
 ---
 interface Props {
-  title: string;
-  dateRange: string;
-  description: string;
-  link: string;
-  imageUrl?: string;
+    title: string;
+    dateRange: string;
+    description: string;
+    link: string;
+    imageUrl?: string;
 }
 
-const { title, dateRange, description, link, imageUrl = "/placeholder.svg?width=600&height=400" } = Astro.props;
+const { title, dateRange, description, link, imageUrl } = Astro.props;
 ---
 
 <div class="bg-[#D9D9D9] rounded-3xl overflow-hidden">
-  <div class="flex flex-col md:flex-row">
-    <div class="p-8 flex flex-col text-black flex-1">
-      <h3 class="text-3xl font-bold mb-2">{title}</h3>
-      <p class="text-lg mb-4">{dateRange}</p>
-      <p class="text-lg mb-6">{description}</p>
-      <a href={link} class="text-lg font-bold hover:opacity-70 transition-opacity inline-flex items-center">
-        Read More 
-        <svg 
-          xmlns="http://www.w3.org/2000/svg" 
-          width="24" 
-          height="24" 
-          viewBox="0 0 24 24" 
-          fill="none" 
-          stroke="currentColor" 
-          stroke-width="2" 
-          stroke-linecap="round" 
-          stroke-linejoin="round" 
-          class="ml-1 w-4 h-4"
-        >
-          <path d="M5 12h14M12 5l7 7-7 7"/>
-        </svg>
-      </a>
+    <div class="flex flex-row md:flex-col justify-between items-center">
+        <div class="p-8 flex flex-col text-black flex-1 max-w-[500px]">
+            <h3 class="text-4xl font-bold mb-2">{title}</h3>
+            <p class="text-xl mb-4">{dateRange}</p>
+            <p class="text-xl mb-6">{description}</p>
+            <a
+                href={link}
+                class="text-lg font-bold hover:opacity-70 transition-opacity inline-flex items-center"
+            >
+                Read More
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="ml-1 w-4 h-4"
+                >
+                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+            </a>
+        </div>
+        <div class="self-center rounded-3xl pr-10">
+            <img
+                src={imageUrl || "/placeholder.png"}
+                alt=""
+                class="w-[375px] h-[250px] object-cover clip-rounding"
+            />
+        </div>
     </div>
-    <div class="w-full md:w-[600px] h-[400px] bg-[#FFA500]">
-      <img 
-        src={imageUrl || "/placeholder.svg"} 
-        alt=""
-        class="w-full h-full object-cover"
-        width="600"
-        height="400"
-      />
-    </div>
-  </div>
 </div>
-

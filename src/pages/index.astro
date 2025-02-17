@@ -3,40 +3,46 @@ import Layout from "../layouts/Layout.astro";
 import CardOfInterest from "../components/CardOfInterest.astro";
 ---
 
-<Layout title="DOTY'S SITE">
+<Layout title="DOTY'S SITE" menuHidden={true}>
     <div
         class="flex flex-col items-center justify-center min-h-screen text-center px-4"
     >
-        <h1 class="text-4xl md:text-6xl font-bold mb-16">OOH, WHAT'S THAT?</h1>
+        <h1 class="text-4xl md:text-6xl font-bold mb-16" id="whats_that">
+            OOH, WHAT'S THAT?
+        </h1>
 
-        <div class="relative w-32 h-32 md:w-48 md:h-48 mb-16">
+        <div class="relative w-32 h-32 md:w-48 md:h-48 mb-16" id="dot">
             <div class="w-full h-full bg-white rounded-full"></div>
         </div>
 
         <div class="space-y-8">
-            <h2 class="text-3xl md:text-5xl font-bold">
+            <h2 class="text-3xl md:text-5xl font-bold" id="that_is">
                 THAT'S JUST A LITTLE DOT
             </h2>
-            <p class="text-xl md:text-2xl max-w-2xl mx-auto" id="navbar-toggle">
-                THAT LOVES COMPUTERS AND HELPING OTHERS AROUND ITSELF
-            </p>
+            <div
+                class="text-xl md:text-2xl mx-auto flex flex-col items-center"
+                id="navbar-toggle"
+            >
+                <p id="loves-comp">THAT LOVES COMPUTERS AND</p>
+                <p id="help-others">HELPING OTHERS AROUND ITSELF</p>
+            </div>
         </div>
     </div>
 
     <!-- Introduction Section with large spacing -->
     <div
-        class="min-h-screen flex flex-col items-center justify-center text-center px-4 py-32"
+        class="min-h-screen flex flex-col items-center justify-center text-center px-4 py-42"
     >
-        <div class="max-w-4xl mx-auto space-y-24">
+        <div class="max-w-4xl mx-auto space-y-28">
             <!-- Bible Quote -->
-            <div class="space-y-4">
-                <p class="text-2xl md:text-3xl italic font-light">
+            <div class="space-y-4 font-[Lato]">
+                <p class="text-3xl md:text-5xl italic font-light">
                     Beloved,<br />
                     now we are children of God;<br />
                     and it has not yet been revealed<br />
                     what we shall be.
                 </p>
-                <p class="text-xl">1 John 3,2</p>
+                <p class="text-3xl font-bold">1 John 3,2</p>
             </div>
 
             <!-- Personal Introduction -->
@@ -55,13 +61,13 @@ import CardOfInterest from "../components/CardOfInterest.astro";
                     </p>
 
                     <div>
-                        <p>But above all:</p>
-                        <p class="font-bold text-xl md:text-2xl my-4">
-                            I want to make this world a better place
-                        </p>
                         <p>
-                            and I believe, the best way to achieve this, is to
-                            serve others:<br />
+                            But above all:<br />
+                            <span class="font-bold text-xl md:text-2xl my-4">
+                                I want to make this world a better place
+                            </span><br />
+                            and I believe, the best way to achieve this, is to serve
+                            others:<br />
                             both individuals and communities.<br />
                             And the more you know, the more you can help.
                         </p>
@@ -182,3 +188,50 @@ import CardOfInterest from "../components/CardOfInterest.astro";
         // Handle next slide
     });
 </script>
+
+<style>
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes typing {
+        from {
+            width: 0;
+        }
+        to {
+            width: 100%;
+        }
+    }
+
+    #dot {
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    #whats_that,
+    #that_is,
+    #loves-comp,
+    #help-others {
+        @apply relative w-[max-content] before:absolute;
+        content: var(--tw-content);
+        overflow: hidden;
+        white-space: nowrap;
+        width: 0;
+        animation: typing 2.5s steps(50) 1s 1 normal forwards;
+    }
+
+    #that_is {
+        animation-delay: 4s;
+    }
+
+    #loves-comp {
+        animation-delay: 6s;
+    }
+    #help-others {
+        animation-delay: 7s;
+    }
+</style>
