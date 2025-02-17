@@ -7,8 +7,12 @@ import CardOfInterest from "../components/CardOfInterest.astro";
     <div
         class="flex flex-col items-center justify-center min-h-screen text-center px-4"
     >
-        <h1 class="text-4xl md:text-6xl font-bold mb-16" id="whats_that">
-            OOH, WHAT'S THAT?
+        <h1
+            class="text-4xl md:text-6xl font-bold mb-16 flex max-sm:flex-col sm:flex-row sm:justify-center"
+            id="whats_that"
+        >
+            <span class="sm:pr-4">OOH, </span>
+            <span>WHAT'S THAT?</span>
         </h1>
 
         <div class="relative w-32 h-32 md:w-48 md:h-48 mb-16" id="dot">
@@ -16,8 +20,12 @@ import CardOfInterest from "../components/CardOfInterest.astro";
         </div>
 
         <div class="space-y-8">
-            <h2 class="text-3xl md:text-5xl font-bold" id="that_is">
-                THAT'S JUST A LITTLE DOT
+            <h2
+                class="text-3xl md:text-5xl font-bold flex max-sm:flex-col sm:flex-row sm:justify-center"
+                id="that_is"
+            >
+                <span class="sm:pr-4">THAT'S JUST</span>
+                <span>A LITTLE DOT</span>
             </h2>
             <div
                 class="text-xl md:text-2xl mx-auto flex flex-col items-center"
@@ -81,7 +89,7 @@ import CardOfInterest from "../components/CardOfInterest.astro";
     <div
         class="min-h-screen flex flex-col items-center justify-center px-4 py-32"
     >
-        <div class="w-full max-w-7xl mx-auto">
+        <div class="w-[80%] max-w-7xl mx-auto">
             <h2 class="text-4xl md:text-5xl font-bold text-center mb-16">
                 SOME DETAILS
             </h2>
@@ -91,6 +99,7 @@ import CardOfInterest from "../components/CardOfInterest.astro";
                 <button
                     class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 w-10 h-10 bg-white rounded-full flex items-center justify-center text-black hover:opacity-70 transition-opacity"
                     aria-label="Previous slide"
+                    id="prev"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -107,27 +116,36 @@ import CardOfInterest from "../components/CardOfInterest.astro";
                 </button>
 
                 <!-- Cards Container -->
-                <div class="grid grid-cols-3 md:grid-cols-3 gap-8">
-                    <CardOfInterest
-                        title="CARD 1"
-                        content="Some content that I would share about myself in the topic. It should be maximum 10 sentences long, because I want to give some context and some insight about my relationship with the topic, but I don't want to make it to long. A picture would be nice too."
-                        link="/card1"
-                    />
-                    <CardOfInterest
-                        title="CARD 2"
-                        content="Some content that I would share about myself in the topic. It should be maximum 10 sentences long, because I want to give some context and some insight about my relationship with the topic, but I don't want to make it to long. A picture would be nice too."
-                        link="/card2"
-                    />
-                    <CardOfInterest
-                        title="CARD 3"
-                        content="Some content that I would share about myself in the topic. It should be maximum 10 sentences long, because I want to give some context and some insight about my relationship with the topic, but I don't want to make it to long. A picture would be nice too."
-                        link="/card3"
-                    />
+                <div
+                    class="grid max-md:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 overflow-hidden"
+                >
+                    <div id="card-1" class="card">
+                        <CardOfInterest
+                            title="CARD 1"
+                            content="Some content that I would share about myself in the topic. It should be maximum 10 sentences long, because I want to give some context and some insight about my relationship with the topic, but I don't want to make it to long. A picture would be nice too."
+                            link="/card1"
+                        />
+                    </div>
+                    <div id="card-2" class="card">
+                        <CardOfInterest
+                            title="CARD 2"
+                            content="Some content that I would share about myself in the topic. It should be maximum 10 sentences long, because I want to give some context and some insight about my relationship with the topic, but I don't want to make it to long. A picture would be nice too."
+                            link="/card2"
+                        />
+                    </div>
+                    <div id="card-3" class="card">
+                        <CardOfInterest
+                            title="CARD 3"
+                            content="Some content that I would share about myself in the topic. It should be maximum 10 sentences long, because I want to give some context and some insight about my relationship with the topic, but I don't want to make it to long. A picture would be nice too."
+                            link="/card3"
+                        />
+                    </div>
                 </div>
 
                 <button
                     class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 w-10 h-10 bg-white rounded-full flex items-center justify-center text-black hover:opacity-70 transition-opacity"
                     aria-label="Next slide"
+                    id="next"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -144,11 +162,7 @@ import CardOfInterest from "../components/CardOfInterest.astro";
                 </button>
 
                 <!-- Dots -->
-                <div class="flex justify-center gap-2 mt-8">
-                    <div class="w-2 h-2 rounded-full bg-white"></div>
-                    <div class="w-2 h-2 rounded-full bg-[#00A3FF]"></div>
-                    <div class="w-2 h-2 rounded-full bg-white"></div>
-                </div>
+                <div class="flex justify-center gap-2 mt-8" id="dots"></div>
             </div>
         </div>
     </div>
@@ -171,22 +185,80 @@ import CardOfInterest from "../components/CardOfInterest.astro";
 
     observer.observe(document.querySelector("#navbar-toggle"));
 
-    // Carousel functionality can be added here if needed
-    const prevButton = document.querySelector(
-        'button[aria-label="Previous slide"]',
-    );
-    const nextButton = document.querySelector(
-        'button[aria-label="Next slide"]',
-    );
+    const cardNumber = 3;
+    let displayedCards = 3;
+    let currentPage = 0;
 
-    // Add click handlers for the buttons
-    prevButton?.addEventListener("click", () => {
-        // Handle previous slide
+    function generateCardNav() {
+        const cards = document.querySelectorAll(".card");
+        const dots = document.querySelector("#dots");
+
+        dots.innerHTML = "";
+
+        for (let i = 0; i < Math.round(cardNumber / displayedCards); i++) {
+            const dot = document.createElement("div");
+            dot.id = `dot-${i}`;
+            dot.classList.add(
+                "w-2",
+                "h-2",
+                "rounded-full",
+                `bg-${i === currentPage ? "[#00A3FF]" : "white"}`,
+            );
+            dots.appendChild(dot);
+        }
+    }
+
+    function displayCards() {
+        const cards = document.querySelectorAll(".card");
+        cards.forEach((card, index) => {
+            if (
+                index >= currentPage * displayedCards &&
+                index < (currentPage + 1) * displayedCards
+            ) {
+                card.classList.remove("hidden");
+            } else {
+                card.classList.add("hidden");
+            }
+        });
+    }
+
+    document.getElementById("prev").addEventListener("click", (_) => {
+        if (currentPage > 0) {
+            currentPage--;
+            generateCardNav();
+            displayCards();
+        }
     });
 
-    nextButton?.addEventListener("click", () => {
-        // Handle next slide
+    document.getElementById("next").addEventListener("click", (_) => {
+        if (currentPage < Math.round(cardNumber / displayedCards) - 1) {
+            currentPage++;
+            generateCardNav();
+            displayCards();
+        }
     });
+
+    const size_content = (_) => {
+        let width = window.innerWidth;
+        if (width < 768) {
+            // under md => single item
+            document.querySelector("#card-2").classList.add("hidden");
+            document.querySelector("#card-3").classList.add("hidden");
+            displayedCards = 1;
+        } else if (width < 1024) {
+            // under lg => two items
+            document.querySelector("#card-2").classList.remove("hidden");
+            document.querySelector("#card-3").classList.add("hidden");
+            displayedCards = 2;
+        } else {
+            // three items
+            document.querySelector("#card-3").classList.remove("hidden");
+            displayedCards = 3;
+        }
+        generateCardNav();
+    };
+    window.addEventListener("resize", size_content);
+    document.addEventListener("DOMContentLoaded", size_content);
 </script>
 
 <style>

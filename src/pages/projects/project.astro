@@ -5,7 +5,9 @@ import EntrySection, { Align } from "../../components/EntrySection.astro";
 ---
 
 <Layout title="A Cool Project - DOTY'S SITE" menuHidden={false}>
-    <article class="flex flex-col items-center min-h-screen">
+    <article
+        class="flex flex-col items-center min-h-screen w-full justify-center flex-wrap flex-grow"
+    >
         <!-- Hero Section -->
         <div class="w-full max-w-7xl px-4 py-16">
             <h1 class="text-4xl md:text-6xl font-bold text-center mb-12">
@@ -13,7 +15,7 @@ import EntrySection, { Align } from "../../components/EntrySection.astro";
             </h1>
 
             <div class="mb-4 place-items-center">
-                <div class="w-[500px]">
+                <div class="w-full sm:min-w-[500px]">
                     <img
                         src="/placeholder.png"
                         alt=""

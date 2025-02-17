@@ -12,96 +12,139 @@ const { title, menuHidden = false } = Astro.props;
 <Scaffolding title={title}>
     <div class="flex flex-col min-h-screen">
         <!-- Navigation Bar -->
-        <nav
+        <header
             id="navbar"
-            class={`flex items-baseline justify-between px-6 pt-4 border-b-2 border-white font-[Arial_Black] fixed w-full bg-bg z-100 duration-250 transition-opacity ${menuHidden ? "opacity-0" : "opacity-100"}`}
+            class={`px-6 pt-4 border-b-2 border-white font-[Arial_Black] fixed w-full bg-bg z-100 duration-250 transition-opacity ${menuHidden ? "opacity-0" : "opacity-100"}`}
         >
-            <div class="flex items-center gap-4">
-                <!-- Decorative Circle -->
-                <div class="w-16 h-16 rounded-full clip-circle">
-                    <img src="/favicon.png" />
-                </div>
-                <a href="/" class="text-3xl tracking-wider self-end">
-                    DOTY'S SITE
+            <div
+                class="relative flex max-w-full max-md:flex-col pt-4 md:flex-row md:items-baseline md:justify-between"
+            >
+                <a class="flex items-center text-2xl font-black" href="/">
+                    <!-- Decorative Circle -->
+                    <span class="w-16 h-16 rounded-full clip-circle">
+                        <img src="/favicon.png" />
+                    </span>
+                    <span
+                        class="text-3xl tracking-wider self-end sm:block max-sm:hidden"
+                    >
+                        DOTY.HU
+                    </span>
                 </a>
+                <input class="peer hidden" type="checkbox" id="navbar-open" />
+                <label
+                    class="absolute right-0 mt-1 pr-5 cursor-pointer text-xl md:hidden"
+                    for="navbar-open"
+                >
+                    <span class="sr-only">Toggle Navigation</span>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="0.88em"
+                        height="1em"
+                        preserveAspectRatio="xMidYMid meet"
+                        viewBox="0 0 448 512"
+                        ><path
+                            fill="currentColor"
+                            d="M0 96c0-17.7 14.3-32 32-32h384c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zm0 160c0-17.7 14.3-32 32-32h384c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zm448 160c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32h384c17.7 0 32 14.3 32 32z"
+                        ></path></svg
+                    >
+                </label>
+                <nav
+                    class="peer-checked:block peer-not-checked:max-md:hidden pl-2 pt-6 md:block sm:py-0"
+                >
+                    <ul
+                        class="flex max-md:flex-col gap-y-4 md:flex-row md:gap-x-8"
+                    >
+                        <li class="text-3xl">
+                            <a
+                                href="/projects"
+                                class="hover:text-gray-300 transition-colors"
+                            >
+                                PROJECTS
+                            </a>
+                        </li>
+                        <li class="text-3xl">
+                            <a
+                                href="/hobbies"
+                                class="hover:text-gray-300 transition-colors"
+                            >
+                                HOBBIES
+                            </a>
+                        </li>
+
+                        <!-- Language Selector -->
+                        <li class="relative" id="lang-selector">
+                            <button
+                                id="lang-button"
+                                class="flex items-center justify-between w-full gap-2 hover:text-gray-300 transition-colors"
+                            >
+                                <span class="text-3xl max-sm:block sm:hidden"
+                                    >LANGUAGE</span
+                                >
+                                <div class="flex items-center">
+                                    <img
+                                        src="/english.png"
+                                        alt="UK Flag"
+                                        class="object-contain h-6"
+                                    />
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="16"
+                                        height="16"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        class="w-4 h-4"
+                                    >
+                                        <path d="m6 9 6 6 6-6"></path>
+                                    </svg>
+                                </div>
+                            </button>
+
+                            <ul
+                                id="lang-menu"
+                                class="mt-2 py-2 w-48 rounded-md shadow-xl hidden w-full"
+                            >
+                                <li>
+                                    <a
+                                        href="#"
+                                        class="px-4 py-2 w-full hover:bg-[#121212] transition-colors flex items-center justify-between"
+                                    >
+                                        English
+                                        <img
+                                            src="/english.png"
+                                            alt="UK Flag"
+                                            class="object-contain h-4"
+                                        />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        href="#"
+                                        class="px-4 py-2 hover:bg-[#121212] transition-colors flex items-center justify-between"
+                                    >
+                                        Magyar
+                                        <img
+                                            src="/hungary.png"
+                                            alt="Hungary Flag"
+                                            class="object-contain h-4"
+                                        />
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
             </div>
-
-            <div class="flex items-center gap-8 text-3xl">
-                <div class="sm:flex items-center gap-8">
-                    <a
-                        href="/projects"
-                        class="hover:text-gray-300 transition-colors"
-                    >
-                        PROJECTS
-                    </a>
-                    <a
-                        href="/hobbies"
-                        class="hover:text-gray-300 transition-colors"
-                    >
-                        HOBBIES
-                    </a>
-                </div>
-
-                <!-- Language Selector -->
-                <div class="relative" id="lang-selector">
-                    <button
-                        id="lang-button"
-                        class="flex items-center gap-2 hover:text-gray-300 transition-colors"
-                    >
-                        <img
-                            src="/english.png"
-                            alt="UK Flag"
-                            class="object-contain h-6"
-                        />
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            class="w-4 h-4"
-                        >
-                            <path d="m6 9 6 6 6-6"></path>
-                        </svg>
-                    </button>
-
-                    <div
-                        id="lang-menu"
-                        class="absolute right-0 mt-2 py-2 w-48 bg-[#252424] rounded-md shadow-xl hidden"
-                    >
-                        <a
-                            href="#"
-                            class="px-4 py-2 hover:bg-[#121212] transition-colors flex items-center justify-between"
-                        >
-                            English
-                            <img
-                                src="/english.png"
-                                alt="UK Flag"
-                                class="object-contain h-4"
-                            />
-                        </a>
-                        <a
-                            href="#"
-                            class="px-4 py-2 hover:bg-[#121212] transition-colors flex items-center justify-between"
-                        >
-                            Magyar
-                            <img
-                                src="/hungary.png"
-                                alt="Hungary Flag"
-                                class="object-contain h-4"
-                            />
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </nav>
-
+        </header>
         <!-- Main Content Area -->
-        <main class:list={menuHidden ? ["flex-1"] : ["flex-1", "pt-20"]}>
+        <main
+            class:list={menuHidden
+                ? ["flex-1", "w-full"]
+                : ["flex-1", "pt-20", "w-full"]}
+        >
             <slot />
         </main>
 
@@ -109,7 +152,6 @@ const { title, menuHidden = false } = Astro.props;
         <footer class="py-4 text-center text-sm">COPYRIGHT © 2025 DOTY</footer>
     </div>
 </Scaffolding>
-
 <script>
     // Language selector functionality
     const langButton = document.getElementById("lang-button");
