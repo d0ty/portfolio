@@ -3,7 +3,6 @@ import Layout from "../layouts/Layout.astro";
 import CardOfInterest from "../components/CardOfInterest.astro";
 import { setupMultilang, getSection, lang } from "../multilang";
 await setupMultilang("pages", "home", Astro.url, Astro.currentLocale);
-console.log(lang.get());
 ---
 
 <Layout title="DOTY'S SITE" menuHidden={true}>
@@ -56,7 +55,9 @@ console.log(lang.get());
 
             <!-- Personal Introduction -->
             <div class="space-y-12">
-                <h2 class="text-4xl md:text-5xl font-bold">Hi!</h2>
+                <h2 class="text-4xl md:text-5xl font-bold">
+                    {getSection("hi")}
+                </h2>
 
                 <div class="space-y-8 text-lg md:text-xl">
                     <p set:html={getSection("about-start")} />
@@ -80,7 +81,7 @@ console.log(lang.get());
         >
             <div class="w-[80%] max-w-7xl mx-auto">
                 <h2 class="text-4xl md:text-5xl font-bold text-center mb-16">
-                    SOME DETAILS
+                    {getSection("some-details")}
                 </h2>
 
                 <div class="relative">

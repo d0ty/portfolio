@@ -1,0 +1,18 @@
+{
+  "menu_projects": {
+    "en": "PROJECTS",
+    "hu": "PROJEKTEK"
+  },
+  "menu_hobbies": {
+    "en": "HOBBIES",
+    "hu": "HOBBIK"
+  },
+  "menu_lang": {
+    "en": "LANGUAGE",
+    "hu": "NYELV"
+  },
+  "read_more": {
+    "en": "Read More",
+    "hu": "Olvass Tovább"
+  }
+}

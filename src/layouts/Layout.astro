@@ -1,6 +1,6 @@
 ---
 import Scaffolding from "./Scaffolding.astro";
-
+import { getLocaleUI } from "../multilang";
 interface Props {
     title: string;
     menuHidden: boolean;
@@ -59,7 +59,7 @@ const { title, menuHidden = false } = Astro.props;
                                 href="/projects"
                                 class="hover:text-gray-300 transition-colors"
                             >
-                                PROJECTS
+                                {getLocaleUI("menu_projects")}
                             </a>
                         </li>
                         <li class="text-3xl">
@@ -67,7 +67,7 @@ const { title, menuHidden = false } = Astro.props;
                                 href="/hobbies"
                                 class="hover:text-gray-300 transition-colors"
                             >
-                                HOBBIES
+                                {getLocaleUI("menu_hobbies")}
                             </a>
                         </li>
 
@@ -78,7 +78,7 @@ const { title, menuHidden = false } = Astro.props;
                                 class="flex items-center justify-between w-full gap-2 hover:text-gray-300 transition-colors"
                             >
                                 <span class="text-3xl max-sm:block sm:hidden"
-                                    >LANGUAGE</span
+                                    >{getLocaleUI("menu_lang")}</span
                                 >
                                 <div class="flex items-center">
                                     <img

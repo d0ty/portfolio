@@ -90,4 +90,9 @@ And the more you know, the more you can help.<br/>
 és hiszem, hogy a legjobb módja ennek, ha másoknak szolgálunk:<br/>
 mind egyéneket, mind pedig közösségeket.<br/>
 És minél többet tudsz, annál többet tudsz segíteni.<br/>
+---- some-details ----
+---en---
+SOME DETAILS
+---hu---
+PÁR RÉSZLET
 ---- end ----

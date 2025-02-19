@@ -89,7 +89,7 @@ export async function setupMultilang(
   currentLocale: string,
 ) {
   entry.set(await getEntry(collection, entry_id));
-  lang.set(url.searchParams.get("lang") ?? currentLocale ?? "en");
+  lang.set(url.search.split("locale=")[1] ?? currentLocale ?? "en");
 }
 
 export function getSection(id: string, render: boolean = false) {
@@ -97,4 +97,8 @@ export function getSection(id: string, render: boolean = false) {
     .get()
     .data?.sections.find((section) => section.id === id)?.[lang.get()];
   return render ? markdown(content) : content;
+}
+
+export async function getLocaleUI(id: string) {
+  return (await getEntry("locale", id)).data?.[lang.get()];
 }
