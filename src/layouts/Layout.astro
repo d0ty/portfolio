@@ -1,6 +1,8 @@
 ---
 import Scaffolding from "./Scaffolding.astro";
 import { getLocaleUI } from "../multilang";
+import { $lang } from "../multilang-store";
+
 interface Props {
     title: string;
     menuHidden: boolean;
@@ -82,7 +84,7 @@ const { title, menuHidden = false } = Astro.props;
                                 >
                                 <div class="flex items-center">
                                     <img
-                                        src="/english.png"
+                                        src={`/${$lang.get()}.png`}
                                         alt="UK Flag"
                                         class="object-contain h-6"
                                     />
@@ -109,12 +111,12 @@ const { title, menuHidden = false } = Astro.props;
                             >
                                 <li>
                                     <a
-                                        href="#"
-                                        class="px-4 py-2 w-full hover:bg-[#121212] transition-colors flex items-center justify-between"
+                                        id="en"
+                                        class="lang-select px-4 py-2 w-full hover:bg-[#121212] transition-colors flex items-center justify-between"
                                     >
                                         English
                                         <img
-                                            src="/english.png"
+                                            src="/en.png"
                                             alt="UK Flag"
                                             class="object-contain h-4"
                                         />
@@ -122,12 +124,12 @@ const { title, menuHidden = false } = Astro.props;
                                 </li>
                                 <li>
                                     <a
-                                        href="#"
-                                        class="px-4 py-2 hover:bg-[#121212] transition-colors flex items-center justify-between"
+                                        id="hu"
+                                        class="lang-select px-4 py-2 hover:bg-[#121212] transition-colors flex items-center justify-between"
                                     >
                                         Magyar
                                         <img
-                                            src="/hungary.png"
+                                            src="/hu.png"
                                             alt="Hungary Flag"
                                             class="object-contain h-4"
                                         />
@@ -153,6 +155,9 @@ const { title, menuHidden = false } = Astro.props;
     </div>
 </Scaffolding>
 <script>
+    import { $lang, locale_cookie } from "../multilang-store";
+    import { setCookie } from "typescript-cookie";
+
     // Language selector functionality
     const langButton = document.getElementById("lang-button");
     const langMenu = document.getElementById("lang-menu");
@@ -176,5 +181,13 @@ const { title, menuHidden = false } = Astro.props;
             isMenuOpen = false;
             langMenu.classList.add("hidden");
         }
+    });
+
+    document.querySelectorAll(".lang-select").forEach((el) => {
+        el.addEventListener("click", (event) => {
+            const lang_id = event.currentTarget.id;
+            $lang.set(lang_id);
+            setCookie(locale_cookie, lang_id, { expires: 7 });
+        });
     });
 </script>

@@ -1,15 +1,19 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
 
-import tailwindcss from '@tailwindcss/vite';
+import tailwindcss from "@tailwindcss/vite";
 
-import vercel from '@astrojs/vercel';
+import vercel from "@astrojs/vercel";
 
 // https://astro.build/config
 export default defineConfig({
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
   },
-
-  adapter: vercel()
+  output: "server",
+  adapter: vercel(),
+  i18n: {
+    locales: ["en", "hu"],
+    defaultLocale: "en",
+  },
 });

@@ -1,8 +1,15 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import CardOfInterest from "../components/CardOfInterest.astro";
-import { setupMultilang, getSection, lang } from "../multilang";
-await setupMultilang("pages", "home", Astro.url, Astro.currentLocale);
+import { setupMultilang, getSection } from "../multilang";
+import { locale_cookie } from "../multilang-store";
+
+await setupMultilang(
+    "pages",
+    "home",
+    Astro.cookies.get(locale_cookie)?.value,
+    Astro.preferredLocale,
+);
 ---
 
 <Layout title="DOTY'S SITE" menuHidden={true}>

@@ -3,9 +3,8 @@ import { z, getEntry } from "astro:content";
 import { parse as parseYAML } from "yaml";
 import * as fs from "node:fs/promises";
 import { type ZodRawShape } from "astro/zod";
-import { atom } from "nanostores";
-import { fileURLToPath } from "node:url";
 import { markdown } from "@astropub/md";
+import { $entry, $lang } from "./multilang-store";
 
 async function syncData(file: string, context: LoaderContext) {
   const content = await fs.readFile(
@@ -15,24 +14,25 @@ async function syncData(file: string, context: LoaderContext) {
   const yaml = parseYAML(
     content.match(/(?<=---\n)((.|\n)*)(?=\n---\n)/gm)[0] || "",
   );
-  const sections = content
-    .matchAll(
-      /----\s*(?<id>(.*?))\s*----\n(?:---\s*en\s*---\n(?<english>([\s\S]*?)))?(?:---\s*hu\s*---\n(?<hungarian>([\s\S]*?)))?(?=\n----|\z)/g,
-    )
-    .map((match) => {
-      const groups = match.groups!!;
-      return {
-        id: groups.id,
-        en: groups.english,
-        hu: groups.hungarian,
-      };
-    });
+  const sections = [
+    ...content.matchAll(
+      /----\s*(?<id>.*?)\s*----\r?\n(?:---\s*en\s*---\r?\n(?<english>[\s\S]+?))?(?:\r?\n---\s*hu\s*---\r?\n(?<hungarian>[\s\S]+?))(?=\r?\n----|\r?\n*$)/g,
+    ),
+  ].map((match) => {
+    const groups = match.groups!!;
+    console.log(groups);
+    return {
+      id: groups.id,
+      en: groups.english,
+      hu: groups.hungarian,
+    };
+  });
   const id = yaml.id ?? file.replace(/\.md$/, "");
   const data = await context.parseData({
     id: id,
     data: {
       ...yaml,
-      sections: sections.toArray(),
+      sections: sections,
     },
   });
 
@@ -79,26 +79,23 @@ export function defineMultilangSchema(schema: ZodRawShape) {
     .extend(schema);
 }
 
-export const entry = atom({});
-export const lang = atom("en");
-
 export async function setupMultilang(
   collection: string,
   entry_id: string,
-  url: URL,
+  cookie: string,
   currentLocale: string,
 ) {
-  entry.set(await getEntry(collection, entry_id));
-  lang.set(url.search.split("locale=")[1] ?? currentLocale ?? "en");
+  $entry.set(await getEntry(collection, entry_id));
+  $lang.set(cookie ?? currentLocale ?? "en");
 }
 
 export function getSection(id: string, render: boolean = false) {
-  const content = entry
+  const content = $entry
     .get()
-    .data?.sections.find((section) => section.id === id)?.[lang.get()];
+    .data?.sections.find((section) => section.id === id)?.[$lang.get()];
   return render ? markdown(content) : content;
 }
 
 export async function getLocaleUI(id: string) {
-  return (await getEntry("locale", id)).data?.[lang.get()];
+  return (await getEntry("locale", id)).data?.[$lang.get()];
 }
