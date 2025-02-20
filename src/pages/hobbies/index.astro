@@ -1,0 +1,32 @@
+---
+import EntryList from "../../components/EntryList.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+import Layout from "../../layouts/Layout.astro";
+import {
+    setupMultilang,
+    getLocaleUI,
+    getLocalizedProperty,
+} from "../../multilang";
+import { locale_cookie } from "../../multilang-store";
+import { getCollection } from "astro:content";
+
+setupMultilang(Astro.cookies.get(locale_cookie)?.value, Astro.preferredLocale);
+
+const hobbies = await getCollection("hobbies");
+---
+
+<Layout title="Hobbies" menuHidden={false}>
+    <EntryList title_id="menu_hobbies" description_id="hobbies_desc">
+        {
+            hobbies.map((item) => (
+                <ProjectCard
+                    title={getLocalizedProperty(item?.data?.title)}
+                    dateRange={null}
+                    description={getLocalizedProperty(item!!.data?.description)}
+                    link={`/hobbies/${item!!.id}`}
+                    imageUrl={item!!.data?.featuredImage}
+                />
+            ))
+        }
+    </EntryList>
+</Layout>

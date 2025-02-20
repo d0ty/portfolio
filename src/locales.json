@@ -30,5 +30,9 @@
   "projects_desc": {
     "en": "Everything I've worked on so far",
     "hu": "Minden, amin eddig dolgoztam"
+  },
+  "hobbies_desc": {
+    "en": "My interesets, that I do in order to distract myself from work",
+    "hu": "Az érdeklődéseim, amiket a munkámtól való elvonatkoztatás céljáből űzök"
   }
 }

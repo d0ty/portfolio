@@ -37,4 +37,13 @@ const projects = defineCollection({
   }),
 });
 
-export const collections = { pages, locale, projects };
+const hobbies = defineCollection({
+  loader: multilangLoader(),
+  schema: defineMultilangSchema({
+    title: multilang_property,
+    description: multilang_property,
+    featuredImage: z.string(),
+  }),
+});
+
+export const collections = { pages, locale, projects, hobbies };
