@@ -1,10 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import CardOfInterest from "../components/CardOfInterest.astro";
-import { setupMultilang, getSection } from "../multilang";
+import { setupMultilangPage, getSection } from "../multilang";
 import { locale_cookie } from "../multilang-store";
 
-await setupMultilang(
+await setupMultilangPage(
     "pages",
     "home",
     Astro.cookies.get(locale_cookie)?.value,

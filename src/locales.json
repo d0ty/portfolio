@@ -14,5 +14,21 @@
   "read_more": {
     "en": "Read More",
     "hu": "Olvass Tovább"
+  },
+  "date_range": {
+    "en": "From $from",
+    "hu": "$from-tól"
+  },
+  "date_range_until": {
+    "en": "From $from, until $until",
+    "hu": "$from-tól, $until-ig"
+  },
+  "date_format": {
+    "en": "DD/MM/YYYY",
+    "hu": "YYYY.MM.DD"
+  },
+  "projects_desc": {
+    "en": "Everything I've worked on so far",
+    "hu": "Minden, amin eddig dolgoztam"
   }
 }

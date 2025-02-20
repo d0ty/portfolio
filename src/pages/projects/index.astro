@@ -1,40 +1,52 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import ProjectCard from "../../components/ProjectCard.astro";
+import EntryList from "../../components/EntryList.astro";
+import { getCollection } from "astro:content";
+import {
+    getLocalizedProperty,
+    getLocaleUI,
+    setupMultilang,
+} from "../../multilang";
+import { locale_cookie } from "../../multilang-store";
+import dayjs from "dayjs";
+
+setupMultilang(Astro.cookies.get(locale_cookie)?.value, Astro.preferredLocale);
+const projects = await getCollection("projects");
+
+async function formatDateRange(from: Date, until: Date) {
+    const formatDate = async (date: Date) =>
+        dayjs(date).format(await getLocaleUI("date_format"));
+    return (
+        await getLocaleUI(
+            until == null || until == undefined
+                ? "date_range"
+                : "date_range_until",
+        )
+    )
+        .replace("$from", await formatDate(from))
+        .replace(
+            "$until$",
+            until == null || until == undefined ? "" : await formatDate(until),
+        );
+}
 ---
 
 <Layout title="Projects - DOTY'S SITE" menuHidden={false}>
-    <div class="flex flex-col items-center min-h-screen py-16 px-4">
-        <div class="w-full max-w-7xl">
-            <div class="text-center mb-24">
-                <h1 class="text-4xl md:text-6xl font-bold mb-4">PROJECTS</h1>
-                <p class="text-xl md:text-2xl italic">
-                    Everything that I've worked on so far
-                </p>
-            </div>
-
-            <div class="space-y-8">
+    <EntryList title_id="menu_projects" description_id="projects_desc">
+        {
+            projects.map(async (item) => (
                 <ProjectCard
-                    title="Space"
-                    dateRange="From 04.01.2024 until 04.01.2025"
-                    description="This project was about to create a working satelite prototype to the Cansat Hungary 2024 competition."
-                    link="/projects/space"
+                    title={getLocalizedProperty(item.data?.title)}
+                    dateRange={await formatDateRange(
+                        item.data?.from,
+                        item.data?.until ?? null,
+                    )}
+                    description={getLocalizedProperty(item.data?.description)}
+                    link={`/projects/${item.id}`}
+                    imageUrl={item.data?.featuredImage}
                 />
-
-                <ProjectCard
-                    title="Photographic Lamp"
-                    dateRange="From 04.01.2025"
-                    description="It's me again suffering from extras that I wanted to add to a simple lamp."
-                    link="/projects/photographic-lamp"
-                />
-
-                <ProjectCard
-                    title="Photographic Lamp"
-                    dateRange="From 04.01.2025"
-                    description="It's me again suffering from extras that I wanted to add to a simple lamp."
-                    link="/projects/photographic-lamp-2"
-                />
-            </div>
-        </div>
-    </div>
+            ))
+        }
+    </EntryList>
 </Layout>

@@ -1,4 +1,6 @@
 ---
+import { getLocaleUI } from "../multilang";
+
 interface Props {
     title: string;
     dateRange: string;
@@ -20,7 +22,7 @@ const { title, dateRange, description, link, imageUrl } = Astro.props;
                 href={link}
                 class="text-lg font-bold hover:opacity-70 transition-opacity inline-flex items-center"
             >
-                Read More
+                {getLocaleUI("read_more")}
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"

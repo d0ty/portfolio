@@ -188,6 +188,7 @@ const { title, menuHidden = false } = Astro.props;
             const lang_id = event.currentTarget.id;
             $lang.set(lang_id);
             setCookie(locale_cookie, lang_id, { expires: 7 });
+            window.location.reload();
         });
     });
 </script>

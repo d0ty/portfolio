@@ -20,7 +20,6 @@ async function syncData(file: string, context: LoaderContext) {
     ),
   ].map((match) => {
     const groups = match.groups!!;
-    console.log(groups);
     return {
       id: groups.id,
       en: groups.english,
@@ -79,13 +78,22 @@ export function defineMultilangSchema(schema: ZodRawShape) {
     .extend(schema);
 }
 
-export async function setupMultilang(
+export const multilang_property = z.object({
+  en: z.string(),
+  hu: z.string(),
+});
+
+export async function setupMultilangPage(
   collection: string,
   entry_id: string,
   cookie: string,
   currentLocale: string,
 ) {
   $entry.set(await getEntry(collection, entry_id));
+  setupMultilang(cookie, currentLocale);
+}
+
+export function setupMultilang(cookie: string, currentLocale: string) {
   $lang.set(cookie ?? currentLocale ?? "en");
 }
 
@@ -97,5 +105,9 @@ export function getSection(id: string, render: boolean = false) {
 }
 
 export async function getLocaleUI(id: string) {
-  return (await getEntry("locale", id)).data?.[$lang.get()];
+  return (await getEntry("locale", id))?.data?.[$lang.get()];
+}
+
+export function getLocalizedProperty(prop: any) {
+  return prop[$lang.get()];
 }

@@ -1,0 +1,19 @@
+---
+id: celeritas
+title:
+  en: Celeritas board
+  hu: Celeritas lapka
+description:
+  en: A very unique opportunity to be able to develop onto BME's Hunity satellite.
+  hu: Egy páratlan lehetőség a BME Hunity szondájára fejleszteni.
+from: 2024-07-01
+featuredImage: /placeholder.png
+---
+---- introduction ----
+---en---
+Imagine the face of a group of young people when a special message is told to them.
+A message about an opportunity to build an experiement for the new satellite of BME.
+---hu---
+Képzeld el egy rakat fiatal arcot amikor egy különleges üzenetet kapnak.
+Egy üzenetet arról, hogy építhetnek egy kísérletet a BME új űrszondájára.
+---- end ----

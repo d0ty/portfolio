@@ -1,6 +1,10 @@
-import { defineCollection, z } from "astro:content";
+import { defineCollection, z, reference } from "astro:content";
 import { file } from "astro/loaders";
-import { multilangLoader, defineMultilangSchema } from "./multilang";
+import {
+  multilangLoader,
+  defineMultilangSchema,
+  multilang_property,
+} from "./multilang";
 
 const pages = defineCollection({
   loader: multilangLoader(),
@@ -22,4 +26,15 @@ const locale = defineCollection({
   }),
 });
 
-export const collections = { pages, locale };
+const projects = defineCollection({
+  loader: multilangLoader(),
+  schema: defineMultilangSchema({
+    title: multilang_property,
+    description: multilang_property,
+    from: z.string().date(),
+    until: z.date().optional(),
+    featuredImage: z.string(),
+  }),
+});
+
+export const collections = { pages, locale, projects };
