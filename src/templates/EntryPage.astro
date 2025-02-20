@@ -1,0 +1,103 @@
+---
+import EntrySection, { Align } from "../components/EntrySection.astro";
+import {
+    getLocaleUI,
+    getSection,
+    getLocalizedProperty,
+    setupMultilangPage,
+} from "../multilang";
+import { locale_cookie, $entry } from "../multilang-store";
+import { getEntry } from "astro:content";
+
+interface Props {
+    collection: string;
+}
+
+const { collection } = Astro.props;
+
+const entry_id = Astro.params.entry;
+
+try {
+    (await getEntry(collection, entry_id)).rendered?.metadata?.section_ids;
+} catch (e) {
+    console.log(e);
+    return Astro.redirect(`/${collection}`);
+}
+await setupMultilangPage(
+    collection,
+    entry_id,
+    Astro.cookies.get(locale_cookie)?.value,
+    Astro.preferredLocale,
+);
+
+const sections = $entry.get().rendered?.metadata?.section_ids;
+---
+
+<article
+    class="flex flex-col items-center min-h-screen w-full justify-center flex-wrap flex-grow"
+>
+    <!-- Hero Section -->
+    <div class="w-full max-w-7xl px-4 py-16">
+        <h1 class="text-4xl md:text-6xl font-bold text-center mb-12">
+            {getLocalizedProperty($entry.get().data.title)}
+        </h1>
+
+        <div class="mb-4 place-items-center">
+            <div class="w-full sm:min-w-[500px]">
+                <img
+                    src={$entry.get().data.featuredImage}
+                    alt=""
+                    class="w-full h-full object-cover"
+                    width="1920"
+                    height="1080"
+                />
+            </div>
+            <p class="text-sm text-center mt-2 text-gray-400 italic">
+                {sections.includes("feat-cap") ? getSection("feat-cap") : ""}
+            </p>
+        </div>
+
+        <p
+            class="max-w-3xl mx-auto text-center text-lg leading-relaxed"
+            set:html={getSection("introduction")}
+        />
+    </div>
+
+    <!-- Content Sections -->
+    <div class="w-full max-w-7xl px-4 py-16 space-y-32">
+        {
+            sections
+                .filter(
+                    (section_id) =>
+                        section_id != "introduction" &&
+                        section_id != "feat-cap",
+                )
+                .map((section_id) => (
+                    <EntrySection
+                        title="Idk (section param will be needed)"
+                        content={getSection(section_id)}
+                        imageUrl="/placeholder.png"
+                        align={Align.Left}
+                    />
+                ))
+        }
+    </div>
+    <!-- Related Topics Section -->
+    <!--<div class="w-full max-w-7xl px-4 py-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
+            RELATED TOPICS
+        </h2>
+
+        <div class="grid sm:grid-cols-1 md:grid-cols-3 gap-8">
+            <RelatedTopicCard
+                title="ANOTHER PROJECT"
+                link="/projects/another-project"
+            />
+            <RelatedTopicCard title="A HOBBY" link="/hobbies/a-hobby" />
+            <RelatedTopicCard
+                title="SOMETHING FUN"
+                link="/projects/something-fun"
+            />
+        </div>
+    </div>-->
+</article>

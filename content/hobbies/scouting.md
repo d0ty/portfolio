@@ -13,4 +13,9 @@ featuredImage: /placeholder.png
 Scouting for me is a community of people who wants to grow in God, in Nature, and in others.
 ---hu---
 A cserkészet számomra olyan emberek közössége, akik Istenben, a természetben és egymásban akarunk növekedni.
+----test-section----
+---en---
+A test section
+---hu---
+Egy teszt szakasz
 ----end----

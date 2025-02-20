@@ -16,4 +16,9 @@ A message about an opportunity to build an experiement for the new satellite of 
 ---hu---
 Képzeld el egy rakat fiatal arcot amikor egy különleges üzenetet kapnak.
 Egy üzenetet arról, hogy építhetnek egy kísérletet a BME új űrszondájára.
+---- test-section ----
+---en---
+A test section
+---hu---
+Egy teszt szakasz
 ---- end ----

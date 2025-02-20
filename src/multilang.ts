@@ -14,12 +14,15 @@ async function syncData(file: string, context: LoaderContext) {
   const yaml = parseYAML(
     content.match(/(?<=---\n)((.|\n)*)(?=\n---\n)/gm)[0] || "",
   );
+
+  let section_ids: string[] = [];
   const sections = [
     ...content.matchAll(
       /----\s*(?<id>.*?)\s*----\r?\n(?:---\s*en\s*---\r?\n(?<english>[\s\S]+?))?(?:\r?\n---\s*hu\s*---\r?\n(?<hungarian>[\s\S]+?))(?=\r?\n----|\r?\n*$)/g,
     ),
   ].map((match) => {
     const groups = match.groups!!;
+    section_ids.push(groups.id);
     return {
       id: groups.id,
       en: groups.english,
@@ -35,7 +38,14 @@ async function syncData(file: string, context: LoaderContext) {
     },
   });
 
-  context.store.set({ id: id, data });
+  context.store.set({
+    id: id,
+    data,
+    rendered: {
+      html: "<strong>Beware of a multilingual attack!</strong>",
+      metadata: { section_ids: section_ids },
+    },
+  });
 }
 
 export function multilangLoader(): Loader {
