@@ -22,13 +22,13 @@ A cserkészet számomra olyan emberek közössége, akik Istenben, a természetb
 ----test-section----
 ---
 title:
-  en: Test
-  hu: Teszt
+  en: Something important
+  hu: Valami fontos
 image: placeholder.png
-align: right
+align: center
 ---
 ---en---
-A test section
+If you center a text like this, it must be important.
 ---hu---
-Egy teszt szakasz
+Ha egy szöveget középre igazítasz, akkor annak fontosnak kell lennie.
 ----end----
