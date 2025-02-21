@@ -1,8 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import CardOfInterest from "../components/CardOfInterest.astro";
-import { setupMultilangPage, getSection } from "../multilang";
+import {
+    setupMultilangPage,
+    getSection,
+    getLocalizedProperty,
+} from "../multilang";
 import { locale_cookie } from "../multilang-store";
+import { getCollection } from "astro:content";
 
 await setupMultilangPage(
     "pages",
@@ -10,6 +15,8 @@ await setupMultilangPage(
     Astro.cookies.get(locale_cookie)?.value,
     Astro.preferredLocale,
 );
+
+const interests = await getCollection("interests");
 ---
 
 <Layout title="DOTY'S SITE" menuHidden={true}>
@@ -116,27 +123,22 @@ await setupMultilangPage(
                     <div
                         class="grid max-md:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 overflow-hidden"
                     >
-                        <div id="card-1" class="card">
-                            <CardOfInterest
-                                title="CARD 1"
-                                content="Some content that I would share about myself in the topic. It should be maximum 10 sentences long, because I want to give some context and some insight about my relationship with the topic, but I don't want to make it to long. A picture would be nice too."
-                                link="/card1"
-                            />
-                        </div>
-                        <div id="card-2" class="card">
-                            <CardOfInterest
-                                title="CARD 2"
-                                content="Some content that I would share about myself in the topic. It should be maximum 10 sentences long, because I want to give some context and some insight about my relationship with the topic, but I don't want to make it to long. A picture would be nice too."
-                                link="/card2"
-                            />
-                        </div>
-                        <div id="card-3" class="card">
-                            <CardOfInterest
-                                title="CARD 3"
-                                content="Some content that I would share about myself in the topic. It should be maximum 10 sentences long, because I want to give some context and some insight about my relationship with the topic, but I don't want to make it to long. A picture would be nice too."
-                                link="/card3"
-                            />
-                        </div>
+                        {
+                            interests.map((interest, index) => (
+                                <div id={`card-${index + 1}`} class="card">
+                                    <CardOfInterest
+                                        title={getLocalizedProperty(
+                                            interest.data.title,
+                                        )}
+                                        content={getLocalizedProperty(
+                                            interest.data.description,
+                                        )}
+                                        image={interest.data.image}
+                                        link={interest.data.link}
+                                    />
+                                </div>
+                            ))
+                        }
                     </div>
 
                     <button
@@ -159,13 +161,14 @@ await setupMultilangPage(
                     </button>
 
                     <!-- Dots -->
+                    <div class="bg-[#00A3FF] hidden"></div>
                     <div class="flex justify-center gap-2 mt-8" id="dots"></div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script lang="javascript">
+    <script lang="javascript" define:vars={{ cardNumber: interests.length }}>
         const navbar = document.querySelector("#navbar");
 
         const observer = new IntersectionObserver((entries) => {
@@ -182,7 +185,6 @@ await setupMultilangPage(
 
         observer.observe(document.querySelector("#navbar-toggle"));
 
-        const cardNumber = 3;
         let displayedCards = 3;
         let currentPage = 0;
 
@@ -192,7 +194,7 @@ await setupMultilangPage(
 
             dots.innerHTML = "";
 
-            for (let i = 0; i < Math.round(cardNumber / displayedCards); i++) {
+            for (let i = 0; i < Math.ceil(cardNumber / displayedCards); i++) {
                 const dot = document.createElement("div");
                 dot.id = `dot-${i}`;
                 dot.classList.add(

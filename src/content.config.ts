@@ -61,4 +61,15 @@ const hobbies = defineCollection({
   ),
 });
 
-export const collections = { pages, locale, projects, hobbies };
+const interests = defineCollection({
+  loader: file("content/interests.json"),
+  schema: z.object({
+    id: z.string(),
+    title: multilang_property,
+    description: multilang_property,
+    image: z.string().optional(),
+    link: z.string(),
+  }),
+});
+
+export const collections = { pages, locale, projects, hobbies, interests };

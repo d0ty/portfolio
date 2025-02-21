@@ -1,0 +1,41 @@
+[
+  {
+    "id": "hobbies",
+    "title": {
+      "en": "Interests",
+      "hu": "Érdeklődési kör"
+    },
+    "description": {
+      "en": "I am interested in a wide range of topics, from programming to music, from sports to science.",
+      "hu": "Széles érdeklődési körrel rendelkezem, a programozástól a zenén át a sportig és a tudományig."
+    },
+    "image": "/placeholder.png",
+    "link": "/hobbies"
+  },
+  {
+    "id": "projects",
+    "title": {
+      "en": "Projects",
+      "hu": "Projektek"
+    },
+    "description": {
+      "en": "I am interested in a wide range of topics, from programming to music, from sports to science.",
+      "hu": "Széles érdeklődési körrel rendelkezem, a programozástól a zenén át a sportig és a tudományig."
+    },
+    "image": "/placeholder.png",
+    "link": "/hobbies"
+  },
+  {
+    "id": "something",
+    "title": {
+      "en": "Something",
+      "hu": "Valami"
+    },
+    "description": {
+      "en": "I am interested in a wide range of topics, from programming to music, from sports to science.",
+      "hu": "Széles érdeklődési körrel rendelkezem, a programozástól a zenén át a sportig és a tudományig."
+    },
+    "image": "/placeholder.png",
+    "link": "/hobbies"
+  }
+]

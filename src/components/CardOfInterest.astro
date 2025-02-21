@@ -4,10 +4,11 @@ import { getLocaleUI } from "../multilang";
 interface Props {
     title: string;
     content: string;
+    image: string;
     link: string;
 }
 
-const { title, content, link } = Astro.props;
+const { title, content, image, link } = Astro.props;
 ---
 
 <div
@@ -21,6 +22,7 @@ const { title, content, link } = Astro.props;
         {content}
     </p>
 
+    <img src={image} alt={title} class="mt-6" />
     <a
         href={link}
         class="text-black font-bold text-lg mt-6 hover:opacity-70 transition-opacity"
