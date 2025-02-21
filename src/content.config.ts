@@ -5,6 +5,7 @@ import {
   defineMultilangSchema,
   multilang_property,
 } from "./multilang";
+import { Align } from "./align";
 
 const pages = defineCollection({
   loader: multilangLoader(),
@@ -28,22 +29,36 @@ const locale = defineCollection({
 
 const projects = defineCollection({
   loader: multilangLoader(),
-  schema: defineMultilangSchema({
-    title: multilang_property,
-    description: multilang_property,
-    from: z.string().date(),
-    until: z.date().optional(),
-    featuredImage: z.string(),
-  }),
+  schema: defineMultilangSchema(
+    {
+      title: multilang_property,
+      description: multilang_property,
+      from: z.string().date(),
+      until: z.date().optional(),
+      featuredImage: z.string(),
+    },
+    {
+      title: multilang_property,
+      image: z.string().nullable(),
+      align: z.nativeEnum(Align).optional().default(Align.Left),
+    },
+  ),
 });
 
 const hobbies = defineCollection({
   loader: multilangLoader(),
-  schema: defineMultilangSchema({
-    title: multilang_property,
-    description: multilang_property,
-    featuredImage: z.string(),
-  }),
+  schema: defineMultilangSchema(
+    {
+      title: multilang_property,
+      description: multilang_property,
+      featuredImage: z.string(),
+    },
+    {
+      title: multilang_property,
+      image: z.string().nullable(),
+      align: z.nativeEnum(Align).optional().default(Align.Left),
+    },
+  ),
 });
 
 export const collections = { pages, locale, projects, hobbies };

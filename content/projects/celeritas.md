@@ -10,6 +10,12 @@ from: 2024-07-01
 featuredImage: /placeholder.png
 ---
 ---- introduction ----
+---
+title:
+  en: Intro
+  hu: Kezdő
+image: null
+---
 ---en---
 Imagine the face of a group of young people when a special message is told to them.
 A message about an opportunity to build an experiement for the new satellite of BME.
@@ -17,6 +23,13 @@ A message about an opportunity to build an experiement for the new satellite of 
 Képzeld el egy rakat fiatal arcot amikor egy különleges üzenetet kapnak.
 Egy üzenetet arról, hogy építhetnek egy kísérletet a BME új űrszondájára.
 ---- test-section ----
+---
+title:
+  en: Test
+  hu: Teszt
+image: placeholder.png
+align: left
+---
 ---en---
 A test section
 ---hu---

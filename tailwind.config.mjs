@@ -1,9 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}",
-    "*.{js,ts,jsx,tsx,mdx}",
-  ],
+  purge: {
+    content: [
+      "./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}",
+      "*.{js,ts,jsx,tsx,mdx}",
+    ],
+    safelist: ["order-1", "order-2"],
+  },
   theme: {
     extend: {
       colors: {

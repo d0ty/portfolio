@@ -1,8 +1,10 @@
 ---
-import EntrySection, { Align } from "../components/EntrySection.astro";
+import EntrySection from "../components/EntrySection.astro";
+import { Align, fromAlignString } from "../align";
 import {
     getLocaleUI,
     getSection,
+    getSectionData,
     getLocalizedProperty,
     setupMultilangPage,
 } from "../multilang";
@@ -41,7 +43,10 @@ const sections = $entry.get().rendered?.metadata?.section_ids;
         <h1 class="text-4xl md:text-6xl font-bold text-center mb-12">
             {getLocalizedProperty($entry.get().data.title)}
         </h1>
-
+        <div class="grid grid-cols-2">
+            <div class="order-1"></div>
+            <div class="order-2"></div>
+        </div>
         <div class="mb-4 place-items-center">
             <div class="w-full sm:min-w-[500px]">
                 <img
@@ -74,10 +79,14 @@ const sections = $entry.get().rendered?.metadata?.section_ids;
                 )
                 .map((section_id) => (
                     <EntrySection
-                        title="Idk (section param will be needed)"
+                        title={getLocalizedProperty(
+                            getSectionData(section_id).title,
+                        )}
                         content={getSection(section_id)}
-                        imageUrl="/placeholder.png"
-                        align={Align.Left}
+                        imageUrl={getSectionData(section_id).imageUrl}
+                        align={fromAlignString(
+                            getSectionData(section_id).align,
+                        )}
                     />
                 ))
         }

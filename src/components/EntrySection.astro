@@ -1,8 +1,5 @@
 ---
-export enum Align {
-    Left,
-    Right,
-}
+import { Align } from "../align";
 
 interface Props {
     title: string;
@@ -22,14 +19,14 @@ const classes = {
 ---
 
 <div class={classes[align]}>
-    <div class={`order-${align == Align.Left ? 1 : 2}`}>
+    <div class={`md:order-${align == Align.Left ? 1 : 2}`}>
         <h2 class="text-3xl md:text-4xl font-bold mb-6">{title}</h2>
         <p class="text-lg leading-relaxed">
             {content}
         </p>
     </div>
     <div
-        class={`w-full h-[300px] md:h-[400px] order-${align == Align.Right ? 1 : 2}`}
+        class={`w-full h-[300px] md:h-[400px] md:order-${align == Align.Right ? 1 : 2}`}
     >
         <img
             src={imageUrl || "/placeholder.png"}

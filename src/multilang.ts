@@ -12,21 +12,24 @@ async function syncData(file: string, context: LoaderContext) {
     "utf-8",
   );
   const yaml = parseYAML(
-    content.match(/(?<=---\n)((.|\n)*)(?=\n---\n)/gm)[0] || "",
+    content.match(/^\s*---[\r\n]+(?<frontmatter>[\s\S]*?)\r?\n---/).groups
+      ?.frontmatter || "",
   );
 
   let section_ids: string[] = [];
   const sections = [
     ...content.matchAll(
-      /----\s*(?<id>.*?)\s*----\r?\n(?:---\s*en\s*---\r?\n(?<english>[\s\S]+?))?(?:\r?\n---\s*hu\s*---\r?\n(?<hungarian>[\s\S]+?))(?=\r?\n----|\r?\n*$)/g,
+      /----\s*(?<id>.*?)\s*----\r?\n(?:---\r?\n(?<properties>[\s\S]*?)\r?\n---\r?\n)?(?:---\s*en\s*---\r?\n(?<english>[\s\S]+?))?(?:\r?\n---\s*hu\s*---\r?\n(?<hungarian>[\s\S]+?))(?=\r?\n----|\r?\n*$)/g,
     ),
   ].map((match) => {
     const groups = match.groups!!;
     section_ids.push(groups.id);
+    let yaml = parseYAML(groups.properties || "");
     return {
       id: groups.id,
       en: groups.english,
       hu: groups.hungarian,
+      ...yaml,
     };
   });
   const id = yaml.id ?? file.replace(/\.md$/, "");
@@ -73,16 +76,21 @@ export function multilangLoader(): Loader {
   };
 }
 
-export function defineMultilangSchema(schema: ZodRawShape) {
+export function defineMultilangSchema(
+  schema: ZodRawShape,
+  section_schema?: ZodRawShape,
+) {
   return z
     .object({
       id: z.string(),
       sections: z.array(
-        z.object({
-          id: z.string(),
-          en: z.string(),
-          hu: z.string(),
-        }),
+        z
+          .object({
+            id: z.string(),
+            en: z.string(),
+            hu: z.string(),
+          })
+          .extend(section_schema),
       ),
     })
     .extend(schema);
@@ -112,6 +120,10 @@ export function getSection(id: string, render: boolean = false) {
     .get()
     .data?.sections.find((section) => section.id === id)?.[$lang.get()];
   return render ? markdown(content) : content;
+}
+
+export function getSectionData(id: string) {
+  return $entry.get()?.data?.sections.find((section) => section.id === id);
 }
 
 export async function getLocaleUI(id: string) {
