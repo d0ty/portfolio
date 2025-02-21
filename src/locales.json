@@ -34,5 +34,9 @@
   "hobbies_desc": {
     "en": "My interesets, that I do in order to distract myself from work",
     "hu": "Az érdeklődéseim, amiket a munkámtól való elvonatkoztatás céljáből űzök"
+  },
+  "related_topics": {
+    "en": "Related Topics",
+    "hu": "Kapcsolódó Témák"
   }
 }

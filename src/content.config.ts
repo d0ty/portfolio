@@ -36,6 +36,7 @@ const projects = defineCollection({
       from: z.string().date(),
       until: z.date().optional(),
       featuredImage: z.string(),
+      relations: z.array(z.string()).optional(),
     },
     {
       title: multilang_property,
@@ -52,6 +53,7 @@ const hobbies = defineCollection({
       title: multilang_property,
       description: multilang_property,
       featuredImage: z.string(),
+      relations: z.array(z.string()).optional(),
     },
     {
       title: multilang_property,

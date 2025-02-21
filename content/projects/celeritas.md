@@ -8,6 +8,9 @@ description:
   hu: Egy páratlan lehetőség a BME Hunity szondájára fejleszteni.
 from: 2024-07-01
 featuredImage: /placeholder.png
+relations:
+ - hobbies/scouting
+ - hobbies/scouting
 ---
 ---- introduction ----
 ---
