@@ -5,6 +5,7 @@ import * as fs from "node:fs/promises";
 import { type ZodRawShape } from "astro/zod";
 import { markdown } from "@astropub/md";
 import { $entry, $lang } from "./multilang-store";
+import { fileURLToPath } from "node:url";
 
 async function syncData(file: string, context: LoaderContext) {
   const content = await fs.readFile(
@@ -61,9 +62,15 @@ export function multilangLoader(): Loader {
       await Promise.all(
         files.map(async (file) => {
           await syncData(file, context);
-
+          const path = fileURLToPath(
+            new URL(
+              `content/${context.collection}/${file}`,
+              `${context.config.root}`,
+            ),
+          );
+          context.watcher.add(path);
           context.watcher?.on("change", async (changedPath) => {
-            if (changedPath === `./content/${context.collection}/${file}`) {
+            if (changedPath == path) {
               context.logger.info(
                 `Reloading ${file} from ${context.collection}...`,
               );
