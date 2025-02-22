@@ -7,6 +7,9 @@ description:
   en: A youth movement that builds a better world.
   hu: Egy ifjúsági mozgalom, ami egy jobb világot épít.
 featuredImage: /content/hobbies/scouting/featured.JPG
+relations:
+  - hobbies/photography
+  - hobbies/editing
 ---
 ---- introduction ----
 ---en---

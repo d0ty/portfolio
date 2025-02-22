@@ -9,6 +9,7 @@ description:
 featuredImage: /content/hobbies/photography/featured.jpg
 relations:
   - hobbies/scouting
+  - hobbies/editing
 ---
 ---- introduction ----
 ---en---
