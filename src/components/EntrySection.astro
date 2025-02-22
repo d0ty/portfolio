@@ -14,25 +14,29 @@ const baseClasses = "grid md:grid-cols-2 gap-8 items-center";
 
 const classes = {
     [Align.Left]: baseClasses,
-    [Align.Right]: `${baseClasses} md:grid-flow-dense`,
+    [Align.Right]: `${baseClasses} md:grid-flow-dense reverse`,
     [Align.Center]: `grid grid-cols-1 gap-8 items-center text-center`,
 };
+
+console.log(align);
 ---
 
 <div class={classes[align]}>
-    <div class={`md:order-${align == Align.Left ? 1 : 2}`}>
+    <div style="direction: ltr">
         <h2 class="text-3xl md:text-4xl font-bold mb-6">{title}</h2>
-        <p class="text-lg leading-relaxed">
-            {content}
-        </p>
+        <div class="text-lg leading-relaxed" set:html={content} />
     </div>
     <div
-        class={`${align == Align.Center ? "max-w-[500px] justify-self-center" : "w-full h-[300px] md:h-[400px]"}  md:order-${align == Align.Right ? 1 : 2}`}
+        class={`${align == Align.Center ? "max-w-[500px] justify-self-center" : "w-full h-[300px] md:h-[400px]"} md:order-${align == Align.Right ? 1 : 2}`}
     >
-        <img
-            src={imageUrl || "/placeholder.png"}
-            alt=""
-            class="w-full h-full object-cover"
-        />
+        <img src={imageUrl} alt="" class="w-full h-full object-cover" />
     </div>
 </div>
+
+<style>
+    @media screen and (min-width: 768px) {
+        .reverse {
+            direction: rtl;
+        }
+    }
+</style>

@@ -122,11 +122,11 @@ export function setupMultilang(cookie: string, currentLocale: string) {
   $lang.set(cookie ?? currentLocale ?? "en");
 }
 
-export function getSection(id: string, render: boolean = false) {
+export async function getSection(id: string, render: boolean = false) {
   const content = $entry
     .get()
     .data?.sections.find((section) => section.id === id)?.[$lang.get()];
-  return render ? markdown(content) : content;
+  return render ? (await markdown.inline(content)).toString() : content;
 }
 
 export function getSectionData(id: string) {

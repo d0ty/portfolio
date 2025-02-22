@@ -58,14 +58,17 @@ const sections = $entry.get().rendered?.metadata?.section_ids;
                     height="1080"
                 />
             </div>
-            <p class="text-sm text-center mt-2 text-gray-400 italic">
-                {sections.includes("feat-cap") ? getSection("feat-cap") : ""}
-            </p>
+            <p
+                class="text-sm text-center mt-2 text-gray-400 italic"
+                set:html={sections.includes("feat-cap")
+                    ? await getSection("feat-cap", true)
+                    : ""}
+            />
         </div>
 
         <p
             class="max-w-3xl mx-auto text-center text-lg leading-relaxed"
-            set:html={getSection("introduction")}
+            set:html={await getSection("introduction")}
         />
     </div>
 
@@ -78,13 +81,13 @@ const sections = $entry.get().rendered?.metadata?.section_ids;
                         section_id != "introduction" &&
                         section_id != "feat-cap",
                 )
-                .map((section_id) => (
+                .map(async (section_id) => (
                     <EntrySection
                         title={getLocalizedProperty(
                             getSectionData(section_id).title,
                         )}
-                        content={getSection(section_id)}
-                        imageUrl={getSectionData(section_id).imageUrl}
+                        content={await getSection(section_id, true)}
+                        imageUrl={getSectionData(section_id).image}
                         align={fromAlignString(
                             getSectionData(section_id).align,
                         )}

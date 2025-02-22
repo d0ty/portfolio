@@ -13,12 +13,6 @@ relations:
  - hobbies/scouting
 ---
 ---- introduction ----
----
-title:
-  en: Intro
-  hu: Kezdő
-image: null
----
 ---en---
 Imagine the face of a group of young people when a special message is told to them.
 A message about an opportunity to build an experiement for the new satellite of BME.

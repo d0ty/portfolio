@@ -39,8 +39,8 @@ const projects = defineCollection({
       relations: z.array(z.string()).optional(),
     },
     {
-      title: multilang_property,
-      image: z.string().nullable(),
+      title: multilang_property.optional(),
+      image: z.string().optional(),
       align: z.nativeEnum(Align).optional().default(Align.Left),
     },
   ),
@@ -56,8 +56,8 @@ const hobbies = defineCollection({
       relations: z.array(z.string()).optional(),
     },
     {
-      title: multilang_property,
-      image: z.string().nullable(),
+      title: multilang_property.optional(),
+      image: z.string().optional(),
       align: z.nativeEnum(Align).optional().default(Align.Left),
     },
   ),
