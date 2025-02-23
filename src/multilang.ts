@@ -68,7 +68,6 @@ export function multilangLoader(): Loader {
               `${context.config.root}`,
             ),
           );
-          context.watcher.add(path);
           context.watcher?.on("change", async (changedPath) => {
             if (changedPath == path) {
               context.logger.info(
