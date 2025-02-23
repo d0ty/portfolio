@@ -24,7 +24,7 @@ Egy üzenetet arról, hogy építhetnek egy kísérletet a BME új űrszondájá
 title:
   en: Test
   hu: Teszt
-image: placeholder.png
+image: /placeholder.png
 align: left
 ---
 ---en---

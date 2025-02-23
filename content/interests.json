@@ -2,14 +2,13 @@
   {
     "id": "hobbies",
     "title": {
-      "en": "Interests",
-      "hu": "Érdeklődési kör"
+      "en": "Hobbies",
+      "hu": "Hobbik"
     },
     "description": {
-      "en": "I am interested in a wide range of topics, from programming to music, from sports to science.",
-      "hu": "Széles érdeklődési körrel rendelkezem, a programozástól a zenén át a sportig és a tudományig."
+      "en": "Apart from work and study I do quite a lot of things in the name of distraction.",
+      "hu": "A munka és a tanulás mellett számos dologgal foglalkozom a szórakozás jegyében."
     },
-    "image": "/placeholder.png",
     "link": "/hobbies"
   },
   {
@@ -19,23 +18,61 @@
       "hu": "Projektek"
     },
     "description": {
-      "en": "I am interested in a wide range of topics, from programming to music, from sports to science.",
-      "hu": "Széles érdeklődési körrel rendelkezem, a programozástól a zenén át a sportig és a tudományig."
+      "en": "I work on quite a lot of different things that you can read all about. Warning: the list is far from complete, it is updating continuously.",
+      "hu": "Elég sokféle dologgal foglalkozom, amelyekről mindent elolvashatsz. Figyelem: a lista messze nem teljes, folyamatosan frissül."
     },
-    "image": "/placeholder.png",
-    "link": "/hobbies"
+    "link": "/projects"
   },
   {
-    "id": "something",
+    "id": "scouting",
     "title": {
-      "en": "Something",
-      "hu": "Valami"
+      "en": "Scouting",
+      "hu": "Cserkészet"
     },
     "description": {
-      "en": "I am interested in a wide range of topics, from programming to music, from sports to science.",
-      "hu": "Széles érdeklődési körrel rendelkezem, a programozástól a zenén át a sportig és a tudományig."
+      "en": "Scouting is a big part of my life. It is a great lifesytle and community that I finally able to serve.",
+      "hu": "A cserkészet jelentős része az életemnek. Nagyszerű életstílus és közösség, amelyet végre én is szolgálhatok."
+    },
+    "image": "/content/hobbies/scouting/featured.JPG",
+    "link": "/hobbies/scouting"
+  },
+  {
+    "id": "programming",
+    "title": {
+      "en": "Programming",
+      "hu": "Programozás"
+    },
+    "description": {
+      "en": "Let's be realistic, I am a programmer and this is the way I'm going to continue my studies",
+      "hu": "Legyünk reálisak, programozó vagyok és ez az az irány, amivel tovább fogom folytatni a tanulmányaimat"
+    },
+    "image": "/content/hobbies/programming/mobile.png",
+    "link": "/hobbies/programming"
+  },
+  {
+    "id": "cansat",
+    "title": {
+      "en": "CanSat",
+      "hu": "CanSat"
+    },
+    "description": {
+      "en": "CanSat is a competition where you have to build a satellite in the size of a can. I participated in this competition in 2023-24 and it was a huge milestone in my life.",
+      "hu": "A CanSat egy verseny, ahol egy műholdat kell építeni egy üdítősdoboz méretében. 2023-24-ben részt vettem ezen a versenyen, és ez egy hatalmas mérföldkő volt az életemben."
     },
     "image": "/placeholder.png",
-    "link": "/hobbies"
+    "link": "/projects"
+  },
+  {
+    "id": "celeritas",
+    "title": {
+      "en": "Celeritas board",
+      "hu": "Celeritas lapka"
+    },
+    "description": {
+      "en": "The Celeritas board is a student module of BME's Hunity satellite. Starting from 2025 Q4 it will measure X-ray raditation in Space.",
+      "hu": "A Celeritas lapka egy diákmodul a BME Hunity műholdjához. 2025 Q4-től kezdve a világűrben méri a röngensugárzást."
+    },
+    "image": "/placeholder.png",
+    "link": "/projects/celeritas"
   }
 ]

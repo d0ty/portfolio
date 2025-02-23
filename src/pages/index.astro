@@ -64,7 +64,7 @@ const interests = await getCollection("interests");
                     class="text-3xl md:text-5xl italic font-light"
                     set:html={getSection("quote")}
                 />
-                <p class="text-3xl font-bold">1 John 3,2</p>
+                <p class="text-3xl font-bold">{getSection("quote-ref")}</p>
             </div>
 
             <!-- Personal Introduction -->
@@ -241,20 +241,16 @@ const interests = await getCollection("interests");
             let width = window.innerWidth;
             if (width < 768) {
                 // under md => single item
-                document.querySelector("#card-2").classList.add("hidden");
-                document.querySelector("#card-3").classList.add("hidden");
                 displayedCards = 1;
             } else if (width < 1024) {
                 // under lg => two items
-                document.querySelector("#card-2").classList.remove("hidden");
-                document.querySelector("#card-3").classList.add("hidden");
                 displayedCards = 2;
             } else {
                 // three items
-                document.querySelector("#card-3").classList.remove("hidden");
                 displayedCards = 3;
             }
             generateCardNav();
+            displayCards();
         };
         window.addEventListener("resize", size_content);
         document.addEventListener("DOMContentLoaded", size_content);
