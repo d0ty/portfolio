@@ -70,7 +70,7 @@ For video, I use a Huawei P40 Pro with a Hohem iSteady Mobile+ gimbal. I've just
 to use a gimbal and there is a lot to learn, but I enjoy using it.
 ---hu---
 Egy Canon EOS 600D-t használok egy 18-135mm-es objektívvel. Jó gép, én nagyon szeretem.
-Emellet videózáshoz egy Huawei P40 Pro-t használok egy Hohem iSteady Mobile+ gimballel.
+Emellet videózáshoz egy Huawei P40 Pro-t használok egy Hohem iSteady Mobile+ gimballal.
 Most kezdtem el gimbalt használni és még sok mindent kell tanulnom, de nagyon élvezem a használatát.
 
 ----end----

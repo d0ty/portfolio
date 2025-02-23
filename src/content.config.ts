@@ -34,7 +34,7 @@ const projects = defineCollection({
       title: multilang_property,
       description: multilang_property,
       from: z.string().date(),
-      until: z.date().optional(),
+      until: z.string().date().optional(),
       featuredImage: z.string(),
       relations: z.array(z.string()).optional(),
     },

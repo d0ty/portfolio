@@ -9,6 +9,7 @@ description:
 featuredImage: /content/hobbies/programming/programming.jpg
 relations:
   - projects/celeritas
+  - projects/cansat
 ---
 ----introduction----
 ---en---
@@ -68,7 +69,7 @@ szerver nyitott mivoltával.
 title:
   en: Embedded programming
   hu: Beágyazott programozás
-image: /content/hobbies/programming/embedded.jpg
+image: /content/celeritas.jpg
 align: left
 ---
 ---en---

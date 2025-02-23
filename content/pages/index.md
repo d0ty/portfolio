@@ -85,11 +85,11 @@ Szeretném jobb hellyé tenni a világot
 ---en---
 and I believe, the best way to achieve this, is to serve others:<br/>
 both individuals and communities.<br/>
-And the more you know, the more you can help.<br/>
+And the more things you have experience in, the more you can help.<br/>
 ---hu---
-és hiszem, hogy a legjobb módja ennek, ha másoknak szolgálunk:<br/>
+és hiszem, hogy a legjobb módja ennek, ha másokat szolgálunk:<br/>
 mind egyéneket, mind pedig közösségeket.<br/>
-És minél többet tudsz, annál többet tudsz segíteni.<br/>
+És minél több mindenben van tapasztalatod, annál többet tudsz segíteni.<br/>
 ---- some-details ----
 ---en---
 SOME DETAILS

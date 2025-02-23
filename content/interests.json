@@ -59,8 +59,8 @@
       "en": "CanSat is a competition where you have to build a satellite in the size of a can. I participated in this competition in 2023-24 and it was a huge milestone in my life.",
       "hu": "A CanSat egy verseny, ahol egy műholdat kell építeni egy üdítősdoboz méretében. 2023-24-ben részt vettem ezen a versenyen, és ez egy hatalmas mérföldkő volt az életemben."
     },
-    "image": "/placeholder.png",
-    "link": "/projects"
+    "image": "/content/projects/cansat/don_compagne.jpg",
+    "link": "/projects/cansat"
   },
   {
     "id": "celeritas",
@@ -70,9 +70,9 @@
     },
     "description": {
       "en": "The Celeritas board is a student module of BME's Hunity satellite. Starting from 2025 Q4 it will measure X-ray raditation in Space.",
-      "hu": "A Celeritas lapka egy diákmodul a BME Hunity műholdjához. 2025 Q4-től kezdve a világűrben méri a röngensugárzást."
+      "hu": "A Celeritas lapka egy diákmodul a BME Hunity műholdjához. 2025 Q4-től kezdve a világűrben méri a röntgensugárzást."
     },
-    "image": "/placeholder.png",
+    "image": "/content/celeritas.jpg",
     "link": "/projects/celeritas"
   }
 ]

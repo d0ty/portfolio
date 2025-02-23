@@ -49,6 +49,6 @@ align: right
 For editing, I use a 2022 Mac mini with an M2 chip. I use DaVinci Resolve because, besides being free,
 it provides a lot of opportunities to realize my ideas and has years of experience in it.
 ---hu---
-A vágáshoz egy 2022-es Mac mini-t használok, M2-es chippel. DaVinci Resolve-t használok, mert amellett, hogy ingyenes,
+A vágáshoz egy 2022-es Mac mini-t használok, M2-es chippel. DaVinci Resolve-ot használok, mert amellett, hogy ingyenes,
 rengeteg lehetőséget biztosít az elképzeléseim megvalósítására és már évek tapasztalata benne van.
 ---- end ----

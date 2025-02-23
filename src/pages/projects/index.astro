@@ -26,7 +26,7 @@ async function formatDateRange(from: Date, until: Date) {
     )
         .replace("$from", await formatDate(from))
         .replace(
-            "$until$",
+            "$until",
             until == null || until == undefined ? "" : await formatDate(until),
         );
 }
