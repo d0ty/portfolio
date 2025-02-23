@@ -34,6 +34,8 @@ await setupMultilangPage(
 );
 
 const sections = $entry.get().rendered?.metadata?.section_ids;
+
+const title = getLocalizedProperty($entry.get().data.title);
 ---
 
 <article
@@ -122,3 +124,6 @@ const sections = $entry.get().rendered?.metadata?.section_ids;
         )
     }
 </article>
+<script lang="js" define:vars={{ entry_title: title }}>
+    document.title = `${entry_title} - Doty.hu`;
+</script>

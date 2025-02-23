@@ -15,7 +15,10 @@ setupMultilang(Astro.cookies.get(locale_cookie)?.value, Astro.preferredLocale);
 const hobbies = await getCollection("hobbies");
 ---
 
-<Layout title="Hobbies" menuHidden={false}>
+<Layout
+    title={`${await getLocaleUI("menu_hobbies")} - Doty.hu`}
+    menuHidden={false}
+>
     <EntryList title_id="menu_hobbies" description_id="hobbies_desc">
         {
             hobbies.map((item) => (

@@ -32,7 +32,10 @@ async function formatDateRange(from: Date, until: Date) {
 }
 ---
 
-<Layout title="Projects - DOTY'S SITE" menuHidden={false}>
+<Layout
+    title={`${await getLocaleUI("menu_projects")} - Doty.hu`}
+    menuHidden={false}
+>
     <EntryList title_id="menu_projects" description_id="projects_desc">
         {
             projects.map(async (item) => (
