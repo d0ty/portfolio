@@ -10,6 +10,7 @@ featuredImage: /content/hobbies/photography/featured.jpg
 relations:
   - hobbies/scouting
   - hobbies/editing
+  - projects/cansatlab
 ---
 ---- introduction ----
 ---en---

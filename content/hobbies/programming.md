@@ -10,6 +10,7 @@ featuredImage: /content/hobbies/programming/programming.jpg
 relations:
   - projects/celeritas
   - projects/cansat
+  - projects/cansatlab
 ---
 ----introduction----
 ---en---
