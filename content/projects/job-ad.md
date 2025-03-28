@@ -7,7 +7,7 @@ description:
   en: Special opportunity! Don't miss it! (Task of OpVK 2025)
   hu: Páratlan lehetőség! Ne hagyjd ki! (A 2025. évi OpVK feladata)
 from: 2025-03-25
-featuredImage: /public/content/projects/job-ad/featured.jpg
+featuredImage: /content/projects/job-ad/featured.jpg
 relations:
  - hobbies/scouting
  - hobbies/photography
